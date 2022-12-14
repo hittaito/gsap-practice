@@ -1,10 +1,11 @@
-import { readdirSync, statSync } from "fs";
-import { resolve } from "path";
-import { defineConfig } from "vite";
-import glsl from "vite-plugin-glsl";
+import autoprefixer from 'autoprefixer';
+import { readdirSync, statSync } from 'fs';
+import { resolve } from 'path';
+import { defineConfig } from 'vite';
+import glsl from 'vite-plugin-glsl';
 
 let out = {
-  "index.html": resolve(__dirname, `src/index.html`),
+  'index.html': resolve(__dirname, `src/index.html`),
 };
 readdirSync(`${__dirname}/src`)
   .filter((f) => statSync(resolve(__dirname, `src/${f}`)).isDirectory())
@@ -17,11 +18,16 @@ readdirSync(`${__dirname}/src`)
   });
 
 export default defineConfig({
-  root: "src/",
+  root: 'src/',
   plugins: [glsl()],
-  publicDir: "../public",
+  publicDir: '../public',
+  css: {
+    postcss: {
+      plugins: [autoprefixer],
+    },
+  },
   build: {
-    outDir: "../dist",
+    outDir: '../dist',
     rollupOptions: {
       input: out,
     },
