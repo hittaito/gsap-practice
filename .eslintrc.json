@@ -1,0 +1,10 @@
+{
+  "extends": ["prettier"],
+  "plugins": ["@typescript-eslint", "import"],
+  "rules": {
+    "import/first": "error",
+    "import/newline-after-import": "error",
+    "import/no-duplicates": "error",
+    "@typescript-eslint/consistent-type-imports": "error"
+  }
+}
